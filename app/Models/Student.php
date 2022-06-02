@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,11 +9,7 @@ class Student extends Model
 {
     use HasFactory;
 
-
-    public function parents(){
-        $this->belongsTo(Parents::class);
-    }
     public function course(){
-        $this->belongsToMany(Course::class);
+        return $this->belongsToMany(Course::class, 'student_cours','student_id','course_id')->as("Student_courses");
     }
 }

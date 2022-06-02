@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
-class CoursesController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,9 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        //
+        $student = Student::find(17);
+
+        return $student->course;
     }
 
     /**
@@ -23,7 +28,19 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        //
+        $student = new Student();
+        $student->first_name = "Test";
+        $student->last_name = "Test";
+        $student->image = "";
+        $student->address = "Test";
+        $student->birth_date=  Date("2022-06-02 21:34:06");
+        $student->save();
+
+
+        $course = Course::find([1,2]);
+        $student->course()->attach($course);
+
+
     }
 
     /**
@@ -45,7 +62,9 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = Student::find($id);
+
+        return $student->course;
     }
 
     /**
