@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
-class CreateCoursesTable extends Migration
+class AddTeacherIdToCourse extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +14,8 @@ class CreateCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string("name");
+        Schema::table('courses', function (Blueprint $table) {
+            $table->integer('teacher_id')->nullable();
         });
     }
 
@@ -27,6 +26,8 @@ class CreateCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::table('course', function (Blueprint $table) {
+            $table->dropColumn('teacher_id');
+        });
     }
 }

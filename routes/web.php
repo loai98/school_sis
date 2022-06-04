@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ParentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,8 +19,16 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+     'reset' => false,
+  ]);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('students',StudentController::class);
+Route::resource('courses',CourseController::class);
+Route::resource('parents',ParentController::class);
+Route::resource('teachers',TeacherController::class);
+
+

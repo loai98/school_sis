@@ -6,9 +6,15 @@ use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +22,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = Student::find(17);
+       $students = Student::all();
 
-        return $student->course;
+        return view('student.students')->with('students',$students);
     }
 
     /**
@@ -28,17 +34,19 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $student = new Student();
-        $student->first_name = "Test";
-        $student->last_name = "Test";
-        $student->image = "";
-        $student->address = "Test";
-        $student->birth_date=  Date("2022-06-02 21:34:06");
-        $student->save();
+        // $student = new Student();
+        // $student->first_name = "Test";
+        // $student->last_name = "Test";
+        // $student->image = "";
+        // $student->address = "Test";
+        // $student->birth_date=  Date("2022-06-02 21:34:06");
+        // $student->save();
 
 
-        $course = Course::find([1,2]);
-        $student->course()->attach($course);
+        // $course = Course::find([1,2]);
+        // $student->course()->attach($course);
+
+        return "Student Create";
 
 
     }
@@ -63,8 +71,18 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = Student::find($id);
+        $student->course;
+        $student->parents ;
+        // $courses_names=[];
+        // foreach($coursrs as $course){
+        //     array_push($courses_names, $course->name);
+            
+        // }
 
-        return $student->course;
+
+        return $student;
+        // return  $coursrs ;
+        // return $courses_names;
     }
 
     /**

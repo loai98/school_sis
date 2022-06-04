@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +18,9 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        $teachers = Teacher::all();
+
+        return view('teacher.teachers')->with('teachers', $teachers);
     }
 
     /**
@@ -45,7 +52,9 @@ class TeacherController extends Controller
      */
     public function show($id)
     {
-        //
+        $teacher = Teacher::find($id);
+        $teacher->course;
+        return $teacher;
     }
 
     /**
@@ -56,7 +65,7 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Teacher::find($id);
     }
 
     /**

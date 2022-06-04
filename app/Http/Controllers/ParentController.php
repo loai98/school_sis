@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Parents;
 
 class ParentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,8 @@ class ParentController extends Controller
      */
     public function index()
     {
-        //
+        $parents = Parents::all();
+        return view('parent.parents')->with("parents",$parents);
     }
 
     /**
@@ -45,7 +52,9 @@ class ParentController extends Controller
      */
     public function show($id)
     {
-        //
+        $parent = Parents::find($id);
+        $parent->students;
+        return $parent;
     }
 
     /**

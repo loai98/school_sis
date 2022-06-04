@@ -14,7 +14,13 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <div class="actions">
+                    <a href="/students" class="btn btn-primary">Students</a>
+                    <a href="/parents" class="btn btn-primary">Parents</a>
+                    <a href="/teachers" class="btn btn-primary">Teachers</a>
+                    <a href="/courses" class="btn btn-primary">Courses</a>
+                    </div>
+
                 </div>
             </div>
         </div>
