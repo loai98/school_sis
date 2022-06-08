@@ -1,29 +1,69 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header"><h1 class="medium">{{ __('Dashboard') }}</h1></div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <div class="actions">
-                    <a href="/students" class="btn btn-primary">Students</a>
-                    <a href="/parents" class="btn btn-primary">Parents</a>
-                    <a href="/teachers" class="btn btn-primary">Teachers</a>
-                    <a href="/courses" class="btn btn-primary">Courses</a>
-                    </div>
-
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
                 </div>
-            </div>
+            @endif
         </div>
+
+
+        <table class="actions table table-striped table-bordered compiled-page">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Number of items</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <a href="/students">Students</a>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="count">{{ $students }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <a href="/parents">Parents</a>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="count">{{ $parents }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <a href="/teachers">Teachers</a>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="count">{{ $teachers }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <a href="/courses">Courses</a>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="count">{{ $courses }}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
     </div>
-</div>
 @endsection

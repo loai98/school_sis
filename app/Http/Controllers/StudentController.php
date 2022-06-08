@@ -6,12 +6,9 @@ use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\DB;
 
-class StudentController extends Controller
-{
-    public function __construct()
-    {
+class StudentController extends Controller {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -20,11 +17,13 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-       $students = Student::all();
-
-        return view('student.students')->with('students',$students);
+    public function index() {
+        $students = Student::select('id', 'first_name', 'last_name')->get();
+        $students =[
+            'students' => $students,
+            'title' =>"Students"
+        ];
+        return view('student.students')->with($students);
     }
 
     /**
@@ -32,8 +31,7 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         // $student = new Student();
         // $student->first_name = "Test";
         // $student->last_name = "Test";
@@ -42,12 +40,10 @@ class StudentController extends Controller
         // $student->birth_date=  Date("2022-06-02 21:34:06");
         // $student->save();
 
-
         // $course = Course::find([1,2]);
         // $student->course()->attach($course);
 
         return "Student Create";
-
 
     }
 
@@ -57,8 +53,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -68,17 +63,15 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $student = Student::find($id);
         $student->course;
-        $student->parents ;
+        $student->parents;
         // $courses_names=[];
         // foreach($coursrs as $course){
         //     array_push($courses_names, $course->name);
-            
-        // }
 
+        // }
 
         return $student;
         // return  $coursrs ;
@@ -91,8 +84,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -103,8 +95,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -114,8 +105,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
 }

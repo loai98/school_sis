@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ParentController;
@@ -32,3 +32,11 @@ Route::resource('parents',ParentController::class);
 Route::resource('teachers',TeacherController::class);
 
 
+Route::get('/login/student', [LoginController::class ,"showStudentLoginForm"]);
+Route::get('/login/teacher', [LoginController::class ,"showTeacherLoginForm"]);
+
+
+Route::post('/login/student', [LoginController::class ,"studentLogin"]);
+Route::post('/login/teacher', [LoginController::class ,"teacherLogin"]);
+
+//Route::get("/", [LoginController::class ,"writerLogin"]);

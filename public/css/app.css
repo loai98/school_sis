@@ -10271,3 +10271,19 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.title a {
+  text-decoration: none;
+}
+
+h1.medium, .medium.h1 {
+  font-size: 30px;
+}
+
+.card-header {
+  font-size: 22px;
+}
+
+.compiled-page thead td {
+  font-size: 18px;
+  font-weight: 400;
+}

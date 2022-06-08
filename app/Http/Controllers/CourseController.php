@@ -19,8 +19,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $course = Course::all();
-        return view('course.courses')->with("courses",$course);
+        $course = Course::select('id','name')->get();
+        $course =[
+            'courses' =>$course,
+            'title' =>'Courses'
+        ];
+        return view('course.courses')->with($course);
     }
 
     /**

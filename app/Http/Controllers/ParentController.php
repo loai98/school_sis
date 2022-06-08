@@ -19,8 +19,12 @@ class ParentController extends Controller
      */
     public function index()
     {
-        $parents = Parents::all();
-        return view('parent.parents')->with("parents",$parents);
+        $parents = Parents::select("id",'name')->get();
+        $parents =[
+            'parents' => $parents,
+            'title' =>"Parents"
+        ];
+        return view('parent.parents')->with($parents);
     }
 
     /**

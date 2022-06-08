@@ -18,9 +18,13 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::all();
+        $teachers = Teacher::select('id','first_name','last_name')->get();
+        $teachers = [
+           'teachers'=> $teachers,
+            'title'=>"Teachers"
+        ];
 
-        return view('teacher.teachers')->with('teachers', $teachers);
+       return   view('teacher.teachers')->with( $teachers);
     }
 
     /**
