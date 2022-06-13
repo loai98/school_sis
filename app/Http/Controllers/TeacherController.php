@@ -34,7 +34,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+       return view('teacher.add')->with('title',"Add teacher");
     }
 
     /**
@@ -44,8 +44,31 @@ class TeacherController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+
+        $teacher =new Teacher();
+        $teacher->first_name = $request->input('f_name');
+        $teacher->address = $request->input('address');
+        $teacher->email = $request->input('email');
+        $teacher->salary = $request->input('salary');
+        $teacher->birth_date = $request->input('birth_date');
+        $teacher->phone_number = $request->input('phone_number');
+
+        $teacher->last_name = $request->input('l_name');
+
+        if($request->hasFile('image')){
+            $imageNameWithExtintion =  $request->file('image'); 
+            $imageName= pathinfo($imageNameWithExtintion->getClientOriginalName(), PATHINFO_FILENAME);
+            $imageExtintion=$imageNameWithExtintion->getClientOriginalExtension();
+            $fileNameToSave = $imageName.Time().'.'.$imageExtintion;
+            $teacher->image = $fileNameToSave;
+            $request->file('image')->storeAs('public/images',$fileNameToSave);
+       }
+
+        $teacher->save();
+
+
+        //return $request;
     }
 
     /**

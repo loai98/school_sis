@@ -6,8 +6,10 @@
         <div class="container">
 
             <div class="card mt-5">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between">
                     <h1 class="medium">{{$title}}</h1>
+                    <a href="/teachers/create" class="btn btn-primary px-5">Add teacher</a>
+
                 </div>
             </div>
 
