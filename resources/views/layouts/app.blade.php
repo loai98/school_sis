@@ -43,7 +43,7 @@
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
                         <li class="nav-item"><a class="nav-link" href="/parents">Parents</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/teachers">teachers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/teachers">Teachers</a></li>
                         <li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
                     </ul>
 
@@ -101,7 +101,9 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 container">
+        @include('env.status')
+
             @yield('content')
         </main>
     </div>

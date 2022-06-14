@@ -18,6 +18,7 @@
                     <tr>
                         <td>Name</td>
                         <td>Nomber of courses</td>
+                        <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,16 @@
                             </td>
                             <td>
                                 <span class="count">({{ count($teacher->courses) }}) Courses</span>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <a href="teachers/{{ $teacher->id}}/edit" class="btn btn-primary mx-2 px-4">Edit</a>
+                                    <form action='teachers/{{ $teacher->id}}' method="post" >
+                                        @csrf 
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="submit" class="btn btn-danger px-3" value="Delete">
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

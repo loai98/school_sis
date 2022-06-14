@@ -28,6 +28,6 @@ class Teacher extends Authenticatable
 
 
     public function courses(){
-        return $this->hasMany(Course::class);
+        return $this->belongsToMany(Course::class,'teacher_courses');
     }
 }
