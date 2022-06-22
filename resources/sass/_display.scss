@@ -1,21 +1,47 @@
-.title{
-    a{
+.title {
+    a {
         text-decoration: none;
     }
 }
-h1{
-    &.medium{
+h1 {
+    &.medium {
         font-size: 30px;
     }
 }
-.card-header{
+.card-header {
     font-size: 22px;
 }
-.compiled-page{
-    thead{
-        td{
+.compiled-page {
+    thead {
+        td {
             font-size: 18px;
             font-weight: 400;
+        }
+    }
+}
+
+.image-wrapper {
+    .field-image {
+        width: 150px;
+        height: fit-content;
+        margin-right: 15px;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+.main-content {
+    padding: 0;
+    .fields-wrapper {
+        font-size: 18px;
+        .label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .field-content {
+            margin-bottom: 10px;
         }
     }
 }

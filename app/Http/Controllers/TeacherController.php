@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class TeacherController extends Controller {
     public function __construct() {
@@ -71,11 +72,8 @@ class TeacherController extends Controller {
         }
 
         $teacher->save();
-        //$courses = Course::find($request->input('courses'));
         $teacher->courses()->attach($request->input('courses'));
-        // $teacher->courses()->atta
-
-        return redirect('/teachers')->with('success', 'Teacher created successfully');
+        return redirect('/teachers' . '/' . $teacher->id)->with('success', 'Teacher created successfully');
     }
 
     /**
@@ -86,8 +84,12 @@ class TeacherController extends Controller {
      */
     public function show($id) {
         $teacher = Teacher::find($id);
-        $teacher->course;
-        return $teacher;
+        $teacher->courses;
+        $data = [
+            'title' => $teacher->first_name,
+            'teacher' => $teacher,
+        ];
+        return view('teacher.landing')->with($data);
     }
 
     /**
@@ -99,16 +101,15 @@ class TeacherController extends Controller {
     public function edit($id) {
 
         $teacher = Teacher::find($id);
-        $teacher_courses =  DB::table('teacher_courses')->select('course_id')->where('teacher_id', $id)->groupBy('course_id')->get();
+        $teacher_courses = DB::table('teacher_courses')->select('course_id')->where('teacher_id', $id)->groupBy('course_id')->get();
 
         $teacher_courses = $teacher_courses->pluck('course_id')->all();
 
-
-        $data =[
-            'title' =>'Edit'.$teacher->title,
-            'teacher' =>$teacher,
-            'courses'=>Course::select('id','name')->get(),
-            'teacher_courses'=>$teacher_courses
+        $data = [
+            'title' => 'Edit ' . $teacher->first_name,
+            'teacher' => $teacher,
+            'courses' => Course::select('id', 'name')->get(),
+            'teacher_courses' => $teacher_courses,
         ];
         return view('teacher.edit')->with($data);
     }
@@ -121,8 +122,13 @@ class TeacherController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-
         $teacher = Teacher::find($id);
+        if ($teacher->email != $request->input('email')) {
+            $this->validate($request, [
+                'email' => 'unique:teachers',
+            ]);
+        }
+
         $teacher->first_name = $request->input('f_name');
         $teacher->address = $request->input('address');
         $teacher->email = $request->input('email');
@@ -142,7 +148,7 @@ class TeacherController extends Controller {
 
         $teacher->save();
         $teacher->courses()->sync($request->input('courses'));
-        return redirect('/teachers')->with('success', 'Teacher updated successfully');
+        return redirect('/teachers' . '/' . $teacher->id)->with('success', 'Teacher updated successfully');
     }
 
     /**
@@ -154,6 +160,6 @@ class TeacherController extends Controller {
     public function destroy($id) {
         Teacher::find($id)->delete();
 
-       return redirect('/teachers')->with('delete', 'Teacher Deleted');
+        return redirect('/teachers')->with('delete', 'Teacher Deleted');
     }
 }

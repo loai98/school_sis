@@ -10287,3 +10287,29 @@ h1.medium, .medium.h1 {
   font-size: 18px;
   font-weight: 400;
 }
+
+.image-wrapper .field-image {
+  width: 150px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-right: 15px;
+}
+.image-wrapper .field-image img {
+  width: 100%;
+  height: auto;
+}
+
+.main-content {
+  padding: 0;
+}
+.main-content .fields-wrapper {
+  font-size: 18px;
+}
+.main-content .fields-wrapper .label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+.main-content .fields-wrapper .field-content {
+  margin-bottom: 10px;
+}

@@ -16,6 +16,7 @@ class CreateStudentCoursTable extends Migration
         Schema::create('student_cours', function (Blueprint $table) {
             $table->integer("student_id");
             $table->integer("course_id");
+            $table->foreignId('user_id')->constraint('user')->CascadeOnDelete();
 
         });
     }

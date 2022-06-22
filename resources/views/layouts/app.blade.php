@@ -2,11 +2,17 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script src="/js/main.js"></script>
 
     <title>
         {{-- @isset($title)
@@ -15,7 +21,7 @@
         @if (empty($title))
             {{ config('app.name') }}
         @else
-            {{ $title }}
+            {{ $title . " | ". config('app.name')}}
         @endif
     </title>
 
