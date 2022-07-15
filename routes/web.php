@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
+// Test
 Auth::routes([
     'register' => false,
      'reset' => false,
