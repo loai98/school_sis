@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 
 // Test
 Auth::routes([
-    'register' => false,
+    'register' => true,
      'reset' => false,
   ]);
 
