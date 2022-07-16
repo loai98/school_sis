@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @if (count($teachers) > 0)
+ 
         <div class="container">
 
             <div class="card mt-5">
@@ -22,6 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                @if (count($teachers) > 0)
                     @foreach ($teachers as $teacher)
                         <tr>
                             <td><div class="title">

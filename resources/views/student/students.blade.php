@@ -2,7 +2,6 @@
 
 @section('content')
 
-    @if (count($students) > 0)
         <div class="container">
             <div class="card mt-5">
                 <div class="card-header d-flex justify-content-between">
@@ -25,6 +24,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                @if (count($students) > 0)
+
                     @foreach ($students as $student)
                         <tr>
                             <td>
